@@ -6,10 +6,11 @@ import { PLANETARY_CONFIG_TOKEN } from '@facades/planetary';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CommonComponentsModule } from './features/common/common.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, CommonComponentsModule, AppRoutingModule, HttpClientModule],
   providers: [
     {
       provide: PLANETARY_CONFIG_TOKEN,

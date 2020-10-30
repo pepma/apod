@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ApodListComponent } from './apod-list.component';
 
@@ -6,14 +6,10 @@ describe('ApodListComponent', () => {
   let component: ApodListComponent;
   let fixture: ComponentFixture<ApodListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ApodListComponent ]
-    })
-    .compileComponents();
-  }));
-
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ApodListComponent],
+    }).compileComponents();
     fixture = TestBed.createComponent(ApodListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -1,0 +1,26 @@
+@import 'src/theme/variables';
+
+.detail {
+  text-align: center;
+  cursor: pointer;
+  background-color: $background-color;
+  color: $color-text-contrast;
+  &__header{
+    text-align: center;
+    &--title{
+      @include mat-typography-level-to-styles($app-typography, headline);
+    }
+  }
+  &__content{
+    @include mat-typography-level-to-styles($app-typography, body-1);
+  }
+  &__image {
+    width: 100%;
+    height: 16em;
+    object-fit: cover;
+  }
+}
+
+::ng-deep .mat-card-header-text {
+  width: 100%;
+}

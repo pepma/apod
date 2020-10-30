@@ -46,5 +46,4 @@ describe('PlanetaryApiService', () => {
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });
-
 });

@@ -11,16 +11,11 @@ export class PlanetaryService {
 
   private getDatesOfInterval(endDate: Date, numberOfDays: number): Date[] {
     const startDate = subDays(endDate, numberOfDays - 1);
-    return eachDayOfInterval({ start: startDate, end: endDate }).sort(
-      (a: Date, b: Date) => b.getTime() - a.getTime()
-    );
+    return eachDayOfInterval({ start: startDate, end: endDate }).sort((a: Date, b: Date) => b.getTime() - a.getTime());
   }
 
   getApodList(endDate: Date, numberOfDays: number): Observable<ApodDTO[]> {
-    const apodDays = this.getDatesOfInterval(
-      endDate,
-      numberOfDays
-    ).map((date) => format(date, 'yyyy-MM-dd'));
+    const apodDays = this.getDatesOfInterval(endDate, numberOfDays).map((date) => format(date, 'yyyy-MM-dd'));
 
     const obsApod = apodDays.map((day) => this.getApod(day));
     return forkJoin(obsApod);

@@ -1,6 +1,7 @@
 
 export const environment = {
   production: false,
+  URL_APOD: 'https://api.nasa.gov/planetary/apod',
   NASA_API_KEY: 'bZdu6FJVOvqRYfat1cL3WyoO7qRV8jyzuREkJKkM',
-  DAYS_UNTIL_TODAY: 6
+  DEFAULT_DAYS_TO_SHOW: 6
 };

@@ -12,5 +12,4 @@ export interface ApodDTO {
 export interface PlanetaryConfig {
   urlApod?: string;
   apiKey?: string;
-  daysToShow: number;
 }

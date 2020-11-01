@@ -1,14 +1,14 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PlanetaryFacadeService } from '@facades/planetary';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
 import { mockProperty } from '@test/mock-property';
-import { MockComponents, MockProvider } from 'ng-mocks';
+import { MockProvider } from 'ng-mocks';
 import { of } from 'rxjs';
 
 import { ApodMainComponent } from './apod-main.component';
-import { ApodListComponent } from './components/apod-list/apod-list.component';
 
 describe('ApodMainComponent', () => {
   let component: ApodMainComponent;
@@ -18,8 +18,9 @@ describe('ApodMainComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ApodMainComponent],
-      providers: [MockProvider(PlanetaryFacadeService), MockComponents(ApodListComponent)],
+      providers: [MockProvider(PlanetaryFacadeService)],
       imports: [RouterTestingModule],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(ApodMainComponent);
     component = fixture.componentInstance;
@@ -33,9 +34,19 @@ describe('ApodMainComponent', () => {
   it('should show list', () => {
     spyOn(planetaryFacadeService, 'getAll');
     mockProperty(planetaryFacadeService, 'list$', of([]));
+    mockProperty(planetaryFacadeService, 'hasItems', true);
     fixture.detectChanges();
     const observerSpy = subscribeSpyTo(component.list$);
     expect(observerSpy.getLastValue()).toEqual([]);
+    expect(planetaryFacadeService.getAll).not.toHaveBeenCalled();
+  });
+
+  it('should call to facade when not has items', () => {
+    spyOn(planetaryFacadeService, 'getAll');
+    mockProperty(planetaryFacadeService, 'list$', of([]));
+    mockProperty(planetaryFacadeService, 'hasItems', false);
+    fixture.detectChanges();
+    expect(planetaryFacadeService.getAll).toHaveBeenCalled();
   });
 
   it('should select apod', () => {
@@ -43,6 +54,6 @@ describe('ApodMainComponent', () => {
     spyOn(router, 'navigate');
     fixture.detectChanges();
     component.onSelectApod({ date: '2020-10-20' });
-    expect(router.navigate).toHaveBeenCalledWith(['/detail/2020-10-20']);
+    expect(router.navigate).toHaveBeenCalledWith(['apod/2020-10-20']);
   });
 });

@@ -20,5 +20,6 @@ describe('PlanetaryStateService', () => {
     sut.setApodList([{ title: 'title' }]);
     const observerSpy = subscribeSpyTo(sut.list$);
     expect(observerSpy.getLastValue()[0].title).toEqual('title');
+    expect(sut.list[0].title).toEqual('title');
   });
 });

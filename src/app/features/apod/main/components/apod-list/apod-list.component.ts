@@ -5,7 +5,7 @@ import { ApodDTO } from '@facades/planetary';
   selector: 'app-apod-list',
   templateUrl: './apod-list.component.html',
   styleUrls: ['./apod-list.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApodListComponent {
   @Input() list: ApodDTO[];

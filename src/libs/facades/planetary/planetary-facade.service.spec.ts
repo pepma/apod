@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { subscribeSpyTo } from '@hirez_io/observer-spy';
+import { mockProperty } from '@test/mock-property';
 import { MockProvider } from 'ng-mocks';
 import { of } from 'rxjs';
 
-import { mockProperty } from '@test/mock-property';
 import { PlanetaryFacadeService } from './planetary-facade.service';
 import { PlanetaryService } from './services/planetary.service';
 import { PlanetaryStateService } from './state/planetary-state.service';
@@ -37,5 +37,15 @@ describe('PlanetaryFacadeService', () => {
     mockProperty(planetaryStateService, 'list$', of([]));
     const observerSpy = subscribeSpyTo(sut.list$);
     expect(observerSpy.getLastValue()).toEqual([]);
+  });
+
+  it('should return has items to false', () => {
+    mockProperty(planetaryStateService, 'list', []);
+    expect(sut.hasItems).toEqual(false);
+  });
+
+  it('should return has items to true', () => {
+    mockProperty(planetaryStateService, 'list', [{}]);
+    expect(sut.hasItems).toEqual(true);
   });
 });

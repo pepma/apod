@@ -1,9 +1,8 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { MockComponents } from 'ng-mocks';
 
 import { ApodListComponent } from './apod-list.component';
-import { CardApodDetailComponent } from '../../../../common';
 
 describe('ApodListComponent', () => {
   let component: ApodListComponent;
@@ -11,7 +10,8 @@ describe('ApodListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ApodListComponent, MockComponents(CardApodDetailComponent)],
+      declarations: [ApodListComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fixture = TestBed.createComponent(ApodListComponent);
     component = fixture.componentInstance;

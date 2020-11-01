@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ApodMainComponent } from './apod-main.component';
+import { ApodDetailComponent } from './detail/apod-detail.component';
+import { ApodMainComponent } from './main/apod-main.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ApodMainComponent,
+  },
+  {
+    path: ':date',
+    component: ApodDetailComponent,
   },
 ];
 
@@ -14,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ApodMainRoutingModule {}
+export class ApodRoutingModule {}

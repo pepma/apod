@@ -10,6 +10,9 @@ export class PlanetaryStateService {
   get list$(): Observable<ApodDTO[]> {
     return this.bsList$.asObservable();
   }
+  get list(): ApodDTO[] {
+    return this.bsList$.getValue();
+  }
 
   setApodList(data: ApodDTO[]): void {
     this.bsList$.next(data);

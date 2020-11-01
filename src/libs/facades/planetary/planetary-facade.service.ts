@@ -12,6 +12,10 @@ export class PlanetaryFacadeService {
     return this.planetaryStateService.list$;
   }
 
+  get hasItems(): boolean {
+    return !!this.planetaryStateService.list.length;
+  }
+
   constructor(private planetaryService: PlanetaryService, private planetaryStateService: PlanetaryStateService) {}
 
   getAll(endDate: Date, numberOfDays: number): void {

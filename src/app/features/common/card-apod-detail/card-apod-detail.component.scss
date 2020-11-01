@@ -14,6 +14,9 @@
   &__content{
     @include mat-typography-level-to-styles($app-typography, body-1);
   }
+  &__content--explanation{
+    text-align: justify;
+  }
   &__image {
     width: 100%;
     height: 16em;

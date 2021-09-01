@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 import { MockComponents } from 'ng-mocks';
-
 import { CardApodDetailComponent } from './card-apod-detail.component';
 import { TypeCarApodDetail } from './model/cad-apod-detail.model';
 

@@ -1,8 +1,8 @@
 <div class="title">Astronomy Picture of the Day</div>
 
 <div class="subtitle">
-  The last {{daysToShow}} different images or photographs of our fascinating universe are shown, along with a short explanation
-  written by a professional astronomer.
+  The last {{ daysToShow }} different images or photographs of our fascinating universe are shown, along with a short
+  explanation written by a professional astronomer.
 </div>
 
 <app-apod-list (select)="onSelectApod($event)" [list]="list$ | async"></app-apod-list>

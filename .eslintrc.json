@@ -6,7 +6,8 @@
   "overrides": [
     {
       "files": [
-        "*.ts"
+        "*.ts",
+        "*.spec.ts"
       ],
       "parserOptions": {
         "project": [
@@ -16,11 +17,25 @@
         "createDefaultProgram": true
       },
       "extends": [
-        "plugin:@angular-eslint/ng-cli-compat",
-        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
+        "@typescript-eslint/unbound-method": [
+          "off",
+          {
+            "ignoreStatic": false
+          }
+        ],
+        "@typescript-eslint/no-floating-promises": [
+          "off",
+          {
+            "ignoreVoid": false
+          }
+        ],
         "@angular-eslint/component-selector": [
           "error",
           {

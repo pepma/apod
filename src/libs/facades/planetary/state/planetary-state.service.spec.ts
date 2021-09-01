@@ -19,6 +19,7 @@ describe('PlanetaryStateService', () => {
   it('should set list into state ', () => {
     sut.setApodList([{ title: 'title' }]);
     const observerSpy = subscribeSpyTo(sut.list$);
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     expect(observerSpy.getLastValue()[0].title).toEqual('title');
     expect(sut.list[0].title).toEqual('title');
   });

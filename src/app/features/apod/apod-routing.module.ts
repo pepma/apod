@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { ApodDetailComponent } from './detail/apod-detail.component';
 import { ApodMainComponent } from './main/apod-main.component';
 

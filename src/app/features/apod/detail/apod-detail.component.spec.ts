@@ -40,7 +40,7 @@ describe('ApodDetailComponent', () => {
     const activatedRoute = TestBed.inject(ActivatedRoute);
     const planetaryFacadeService = TestBed.inject(PlanetaryFacadeService);
     spyOn(activatedRoute.snapshot.paramMap, 'get').and.returnValue('2010-10-10');
-    mockProperty(planetaryFacadeService, 'list$', of([{date: '2010-10-10'}]));
+    mockProperty(planetaryFacadeService, 'list$', of([{ date: '2010-10-10' }]));
     fixture.detectChanges();
 
     const observerSpy = subscribeSpyTo(component.item$);

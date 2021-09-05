@@ -1,11 +1,26 @@
-<mat-card (click)="clickDetail()" class="detail">
+<mat-card class="detail" [ngClass]="{ 'detail-user': isTypeUser }" *ngIf="info">
   <mat-card-header class="detail__header">
     <mat-card-title *ngIf="isPreviewMode"
-      ><span class="detail__header--title">{{ info?.date }}</span></mat-card-title
-    >
+      ><span (click)="clickDetail()" class="detail__header--title">{{ info?.date }}</span>
+    </mat-card-title>
+    <button *ngIf="isTypeUser && isPreviewMode" (click)="clickRemove()" mat-icon-button fxLayoutAlign="right">
+      <mat-icon>clear</mat-icon>
+    </button>
   </mat-card-header>
-  <img class="detail__image" mat-card-image src="{{ info?.url }}" alt="{{ info?.title }}" />
-  <mat-card-content class="detail__content'" [class]="{ 'detail__content--explanation': !isPreviewMode }">
+  <iframe *ngIf="!isImage" class="detail__image" [src]="videoUrl" frameborder="0" allowfullscreen></iframe>
+  <img
+    *ngIf="isImage"
+    class="detail__image"
+    mat-card-image
+    src="{{ info.url }}"
+    alt="{{ info?.title }}"
+    (click)="clickDetail()"
+  />
+  <mat-card-content
+    class="detail__content'"
+    [class]="{ 'detail__content--explanation': !isPreviewMode }"
+    (click)="clickDetail()"
+  >
     <span *ngIf="isPreviewMode">{{ info?.title }}</span>
     <span *ngIf="!isPreviewMode">{{ info?.explanation }}</span>
   </mat-card-content>

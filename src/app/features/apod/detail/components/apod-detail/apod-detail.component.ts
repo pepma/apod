@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApodDTO, PlanetaryFacadeService } from '@facades/planetary';
+import { Apod, ApodTypeEnum, PlanetaryFacadeService } from '@facades/planetary';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ApodDetailComponent implements OnInit {
-  item$: Observable<ApodDTO>;
+  item$: Observable<Apod>;
 
   constructor(
     private router: Router,
@@ -25,6 +25,7 @@ export class ApodDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const dateApod = this.activatedRoute.snapshot.paramMap.get('date');
-    this.item$ = this.planetaryFacadeService.list$.pipe(map((list) => list.find((item) => item.date === dateApod)));
+    const type = this.activatedRoute.snapshot.paramMap.get('type') as ApodTypeEnum;
+    this.item$ = this.planetaryFacadeService.list$.pipe(map((list) => list.find((item) => item.date === dateApod && item.type === type)));
   }
 }

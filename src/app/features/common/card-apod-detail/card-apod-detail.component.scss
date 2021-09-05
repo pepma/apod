@@ -7,8 +7,12 @@
   color: $color-text-contrast;
   &__header{
     text-align: center;
+    mat-card-title{
+      margin-top: 5px;
+    }
     &--title{
       @include mat-typography-level-to-styles($app-typography, headline);
+
     }
   }
   &__content{
@@ -22,6 +26,12 @@
     height: 16em;
     object-fit: cover;
   }
+
+
+}
+
+.detail-user{
+  background-color: $color-user;
 }
 
 ::ng-deep .mat-card-header-text {

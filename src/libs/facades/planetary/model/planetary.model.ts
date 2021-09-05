@@ -8,8 +8,22 @@ export interface ApodDTO {
   title?: string;
   url?: string;
 }
+export enum ApodTypeEnum {
+  USER = "user",
+  NASA = "nasa",
+}
+export interface Apod {
+  date?: string;
+  explanation?: string;
+  mediaType?: string;
+  title?: string;
+  url?: string;
+  type?: ApodTypeEnum;
+}
 
 export interface PlanetaryConfig {
   urlApod?: string;
   apiKey?: string;
 }
+
+

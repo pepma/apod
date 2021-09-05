@@ -3,7 +3,6 @@ import { subscribeSpyTo } from '@hirez_io/observer-spy';
 import { mockProperty } from '@test/mock-property';
 import { MockProvider } from 'ng-mocks';
 import { of } from 'rxjs';
-
 import { PlanetaryFacadeService } from './planetary-facade.service';
 import { PlanetaryService } from './services/planetary.service';
 import { PlanetaryStateService } from './state/planetary-state.service';
@@ -34,18 +33,25 @@ describe('PlanetaryFacadeService', () => {
   });
 
   it('should get list from state', () => {
-    mockProperty(planetaryStateService, 'list$', of([]));
+    mockProperty(planetaryStateService, 'list$', of([{ date: '2021/01/01' },{ date: '2020/01/01' }, { date: '2022/01/01' }]));
     const observerSpy = subscribeSpyTo(sut.list$);
-    expect(observerSpy.getLastValue()).toEqual([]);
+    expect(observerSpy.getLastValue()).toEqual([{ date: '2020/01/01' },{ date: '2021/01/01' }, { date: '2022/01/01' }]);
   });
 
-  it('should return has items to false', () => {
-    mockProperty(planetaryStateService, 'list', []);
-    expect(sut.hasItems).toEqual(false);
+  it('should remove from state', () => {
+    spyOn(planetaryStateService, 'removeApod');
+    sut.remove({});
+    expect(planetaryStateService.removeApod).toHaveBeenCalled();
   });
 
-  it('should return has items to true', () => {
-    mockProperty(planetaryStateService, 'list', [{}]);
+  it('should add from state', () => {
+    spyOn(planetaryStateService, 'addApod');
+    sut.add({});
+    expect(planetaryStateService.addApod).toHaveBeenCalled();
+  });
+
+  it('should hasItems from state', () => {
+    mockProperty(planetaryStateService, 'hasItems', true);
     expect(sut.hasItems).toEqual(true);
   });
 });

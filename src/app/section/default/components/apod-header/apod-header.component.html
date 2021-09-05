@@ -4,5 +4,4 @@
   The last {{ daysToShow }} different images or photographs of our fascinating universe are shown, along with a short
   explanation written by a professional astronomer.
 </div>
-
-<app-apod-list (select)="onSelectApod($event)" [list]="list$ | async"></app-apod-list>
+<button mat-button color="accent" (click)="addNewCustomApod()"><mat-icon>add_box</mat-icon> Add Apod</button>

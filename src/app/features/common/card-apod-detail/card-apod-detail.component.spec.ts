@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
+import { ApodTypeEnum } from '@facades/planetary';
 import { MockComponents } from 'ng-mocks';
 import { CardApodDetailComponent } from './card-apod-detail.component';
 import { TypeCarApodDetail } from './model/cad-apod-detail.model';
@@ -15,6 +16,7 @@ describe('CardApodDetailComponent', () => {
     }).compileComponents();
     fixture = TestBed.createComponent(CardApodDetailComponent);
     component = fixture.componentInstance;
+    component.info = { title: 'title', type: ApodTypeEnum.USER };
     fixture.detectChanges();
   });
 
@@ -24,6 +26,7 @@ describe('CardApodDetailComponent', () => {
 
   it('should PreviewMode is true', () => {
     component.mode = TypeCarApodDetail.PREVIEW;
+
     fixture.detectChanges();
     expect(component.isPreviewMode).toEqual(true);
   });
@@ -35,8 +38,14 @@ describe('CardApodDetailComponent', () => {
   });
 
   it('should emit click detail', () => {
-    spyOn(component.select, 'emit');
+    spyOn(component.selectDetail, 'emit');
     component.clickDetail();
-    expect(component.select.emit).toHaveBeenCalled();
+    expect(component.selectDetail.emit).toHaveBeenCalled();
+  });
+
+  it('should emit click remove', () => {
+    spyOn(component.removeApod, 'emit');
+    component.clickRemove();
+    expect(component.removeApod.emit).toHaveBeenCalled();
   });
 });

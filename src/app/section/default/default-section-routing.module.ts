@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApodDetailComponent } from './detail/apod-detail.component';
-import { ApodMainComponent } from './main/apod-main.component';
+import { ApodDetailComponent } from '@features/apod/detail/components/apod-detail/apod-detail.component';
+import { ApodMainComponent } from './container/apod-main.component';
 
 const routes: Routes = [
   {
@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ApodMainComponent,
   },
   {
-    path: ':date',
+    path: ':date/:type',
     component: ApodDetailComponent,
   },
 ];
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class ApodRoutingModule {}
+export class DefaultSectionRoutingModule {}

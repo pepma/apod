@@ -20,7 +20,9 @@
       "dom"
     ],
     "paths": {
+      "@features/*": ["src/app/features/*"],
       "@facades/*": ["src/libs/facades/*"],
+      "@core/*": ["src/libs/core/*"],
       "@test/*": ["test-utils/*"],
       "@environments/*": ["src/environments/*"]
     }

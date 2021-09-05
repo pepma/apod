@@ -3,7 +3,7 @@ import { eachDayOfInterval, format, subDays } from 'date-fns';
 import { forkJoin, Observable } from 'rxjs';
 
 import { PlanetaryApiService } from '../api/planetary-api.service';
-import { ApodDTO } from '../model/planetary.model';
+import { Apod } from '../model/planetary.model';
 
 @Injectable({ providedIn: 'root' })
 export class PlanetaryService {
@@ -14,14 +14,14 @@ export class PlanetaryService {
     return eachDayOfInterval({ start: startDate, end: endDate }).sort((a: Date, b: Date) => b.getTime() - a.getTime());
   }
 
-  getApodList(endDate: Date, numberOfDays: number): Observable<ApodDTO[]> {
+  getApodList(endDate: Date, numberOfDays: number): Observable<Apod[]> {
     const apodDays = this.getDatesOfInterval(endDate, numberOfDays).map((date) => format(date, 'yyyy-MM-dd'));
 
     const obsApod = apodDays.map((day) => this.getApod(day));
     return forkJoin(obsApod);
   }
 
-  getApod(day: string): Observable<ApodDTO> {
+  getApod(day: string): Observable<Apod> {
     return this.planetaryApiService.getApod(day);
   }
 }

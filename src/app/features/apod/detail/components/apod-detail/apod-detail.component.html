@@ -1,6 +1,6 @@
 <div class="detail">
   <p>
-    <button aria-label="Return" (click)="clickBack()">Return</button>
+    <button mat-button color="accent" (click)="clickBack()"><mat-icon>arrow_back_ios</mat-icon>Back</button>
   </p>
   <mat-divider></mat-divider>
   <ng-container *ngIf="item$ | async; else noData">

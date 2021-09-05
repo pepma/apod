@@ -29,8 +29,14 @@ describe('ApodListComponent', () => {
   });
 
   it('should emit event', () => {
-    spyOn(component.select, 'emit');
+    spyOn(component.selectDetail, 'emit');
     component.onSelectApod({ date: '2020-10-10' });
-    expect(component.select.emit).toHaveBeenCalled();
+    expect(component.selectDetail.emit).toHaveBeenCalled();
+  });
+
+  it('should emit remove event', () => {
+    spyOn(component.removeApod, 'emit');
+    component.onRemoveApod({ date: '2020-10-10' });
+    expect(component.removeApod.emit).toHaveBeenCalled();
   });
 });

@@ -1,0 +1,6 @@
+<app-apod-header [daysToShow]="daysToShow" (createCustomApod)="onCreateCustomApod()"></app-apod-header>
+<app-apod-list
+  (removeApod)="onRemoveApod($event)"
+  (selectDetail)="onSelectApod($event)"
+  [list]="list$ | async"
+></app-apod-list>

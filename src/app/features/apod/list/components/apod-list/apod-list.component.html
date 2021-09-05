@@ -2,7 +2,8 @@
   <ng-container *ngFor="let item of list">
     <app-card-apod-detail
       class="detail"
-      (select)="onSelectApod($event)"
+      (selectDetail)="onSelectApod($event)"
+      (removeApod)="onRemoveApod($event)"
       [fxFlex]="33.33"
       [fxFlex.sm]="50"
       [fxFlex.xs]="100"
